@@ -51,7 +51,7 @@ sub import {
 
 =head1 DESCRIPTION
 
-This is a simple output to file. File will be opened with append more. No
+This is a simple output to file. File will be opened with append mode. No
 locking, rotation, or other fancy features (yet). Filehandle will be flushed
 after each log.
 

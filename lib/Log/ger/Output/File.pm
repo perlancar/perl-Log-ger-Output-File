@@ -6,32 +6,31 @@ package Log::ger::Output::File;
 use strict;
 use warnings;
 
-use Log::ger::Util;
-
-sub import {
-    my ($package, %import_args) = @_;
+sub get_hooks {
+    my %conf = @_;
 
     my $fh;
-    if (defined(my $path = $import_args{path})) {
+    if (defined(my $path = $conf{path})) {
         open $fh, ">>", $path or die "Can't open log file '$path': $!";
-    } elsif ($fh = $import_args{handle}) {
+    } elsif ($fh = $conf{handle}) {
     } else {
         die "Please specify 'path' or 'handle'";
     }
 
-    my $plugin = sub {
-        my %args = @_;
+    return {
+        create_log_routine => [
+            __PACKAGE__, 50,
+            sub {
+                my %args = @_;
 
-        my $code = sub {
-            print $fh $_[1];
-            print $fh "\n" unless $_[1] =~ /\R\z/;
-            $fh->flush;
-        };
-        [$code];
+                my $logger = sub {
+                    print $fh $_[1];
+                    print $fh "\n" unless $_[1] =~ /\R\z/;
+                    $fh->flush;
+                };
+                [$logger];
+            }],
     };
-
-    Log::ger::Util::add_plugin(
-        'create_log_routine', [50, $plugin, __PACKAGE__], 'replace');
 }
 
 1;

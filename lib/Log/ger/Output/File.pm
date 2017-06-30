@@ -69,3 +69,5 @@ Alternatively, you can provide an already opened filehandle.
 =head1 SEE ALSO
 
 L<Log::ger>
+
+L<Log::ger::Output::FileWriteRotate>

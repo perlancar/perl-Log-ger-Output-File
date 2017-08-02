@@ -48,7 +48,6 @@ sub get_hooks {
     };
 
     if ($lock_mode eq 'exclusive') {
-        print "D:locking\n";
         $code_lock->();
     }
 

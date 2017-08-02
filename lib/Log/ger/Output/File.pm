@@ -3,6 +3,8 @@ package Log::ger::Output::File;
 # DATE
 # VERSION
 
+## no critic (InputOutput::RequireBriefOpen)
+
 use strict;
 use warnings;
 

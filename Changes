@@ -1,3 +1,10 @@
+0.003   2017-08-02 (PERLANCAR)
+
+	- No functional changes.
+
+	- [doc] Mention LGO:FileWriteRotate.
+
+
 0.002   2017-06-23 (PERLANCAR)
 
 	- Adjust to Log::ger 0.005.

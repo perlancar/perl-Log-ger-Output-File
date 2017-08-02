@@ -72,4 +72,6 @@ Alternatively, you can provide an already opened filehandle.
 
 L<Log::ger>
 
+L<Log::ger::Output::SimpleFile>
+
 L<Log::ger::Output::FileWriteRotate>

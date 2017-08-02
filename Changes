@@ -1,3 +1,8 @@
+0.004   2017-08-02 (PERLANCAR)
+
+        - Add configuration parameters: lock_mode, lazy, autoflush.
+
+
 0.003   2017-08-02 (PERLANCAR)
 
 	- No functional changes.

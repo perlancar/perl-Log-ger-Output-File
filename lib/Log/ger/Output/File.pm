@@ -10,7 +10,8 @@ use warnings;
 
 sub get_hooks {
     my %conf = @_;
-    my $lazy = $conf{lazy};
+    my $lazy      = $conf{lazy};
+    my $autoflush = $conf{autoflush}; $autoflush = 1 unless defined $autoflush;
 
     my $fh;
     my $code_open = sub {
@@ -36,7 +37,7 @@ sub get_hooks {
                     $code_open->() if $lazy && !$fh;
                     print $fh $_[1];
                     print $fh "\n" unless $_[1] =~ /\R\z/;
-                    $fh->flush;
+                    $fh->flush if $autoflush;
                 };
                 [$logger];
             }],
@@ -61,9 +62,8 @@ sub get_hooks {
 
 =head1 DESCRIPTION
 
-This is a simple output to file. File will be opened with append mode. No
-locking, rotation, or other fancy features (yet). Filehandle will be flushed
-after each log.
+This is a simple output to file. File will be opened with append mode.
+Filehandle will be flushed after each log.
 
 
 =head1 CONFIGURATION
@@ -75,6 +75,11 @@ Specify filename to open. File will be opened in append mode.
 =head2 handle => glob|obj
 
 Alternatively, you can provide an already opened filehandle.
+
+=head2 autoflush => bool (default: 1)
+
+Can be turned off if you need more speed, but note that under the absence of
+autoflush, partial log messages might be written.
 
 =head2 lazy => bool (default: 0)
 

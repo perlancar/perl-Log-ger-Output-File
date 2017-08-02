@@ -92,8 +92,8 @@ sub get_hooks {
 
 =head1 DESCRIPTION
 
-This is a simple output to file. File will be opened with append mode.
-Filehandle will be flushed after each log.
+This is an output module to file, with some options. File will be opened with
+append mode. Filehandle will be flushed after each log.
 
 
 =head1 CONFIGURATION

@@ -65,7 +65,7 @@ sub get_hooks {
                     $lock_handle = $code_lock->() if $lock_mode eq 'write';
                     print $fh $_[1];
                     print $fh "\n" unless $_[1] =~ /\R\z/;
-                    $fh->flush if $autoflush || $lock_handle;
+                    $fh->flush if $fh->can("flush") && $autoflush || $lock_handle;
                     undef $lock_handle;
                 };
                 [$logger];

@@ -1,3 +1,9 @@
+0.008   2019-09-10  Released-By: PERLANCAR; Urgency: medium
+
+	- Add workaround for flushing in older perls, e.g. 5.10.1 which causes
+	  tests to fail. See commit log for more details.
+
+
 0.007   2019-04-23  Released-By: PERLANCAR
 
 	- Avoid the "Can't locate object method flush via package

@@ -8,6 +8,9 @@ package Log::ger::Output::File;
 use strict;
 use warnings;
 
+# supply object methods for filehandles, required for older perls e.g. 5.10
+use FileHandle;
+
 our %lock_handles;
 
 sub get_hooks {
@@ -65,7 +68,7 @@ sub get_hooks {
                     $lock_handle = $code_lock->() if $lock_mode eq 'write';
                     print $fh $_[1];
                     print $fh "\n" unless $_[1] =~ /\R\z/;
-                    $fh->flush if $fh->can("flush") && $autoflush || $lock_handle;
+                    $fh->flush if $autoflush || $lock_handle;
                     undef $lock_handle;
                 };
                 [$logger];
